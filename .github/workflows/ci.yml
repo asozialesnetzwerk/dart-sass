@@ -15,7 +15,7 @@ jobs:
     name: Double-check
     runs-on: ubuntu-latest
     needs: [test]
-    if: "github.ref_type == 'tag' && github.event.repository.fork == false"
+    if: "github.ref_type == 'tag'"
 
     steps:
       - uses: actions/checkout@v6
@@ -27,13 +27,13 @@ jobs:
 
   test_vendor:
     needs: [double_check]
-    if: "github.ref_type == 'tag' && github.event.repository.fork == false"
+    if: "github.ref_type == 'tag'"
     uses: ./.github/workflows/test-vendor.yml
     secrets: inherit
 
   release:
     needs: [test_vendor]
-    if: "github.ref_type == 'tag' && github.event.repository.fork == false"
+    if: "github.ref_type == 'tag'"
     permissions:
       attestations: write
       contents: write
