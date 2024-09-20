@@ -18,10 +18,12 @@ import '../logger.dart';
 import '../parse/parser.dart';
 import '../parse/scss.dart';
 import '../utils.dart';
+import '../util/random.dart' show setRandomSeed;
 import '../visitor/evaluate.dart';
 
 /// Runs an interactive SassScript shell according to [options].
 Future<void> repl(ExecutableOptions options) async {
+  if (options.seed == null) setRandomSeed(null);
   var repl = Repl(prompt: '>> ');
   var trackingLogger = TrackingLogger(options.logger);
   var logger = DeprecationProcessingLogger(
@@ -50,6 +52,7 @@ Future<void> repl(ExecutableOptions options) async {
     logger: logger,
   );
   await for (String line in repl.runAsync()) {
+    if (options.seed != null) setRandomSeed(options.seed);
     if (line.trim().isEmpty) continue;
     try {
       if (line.startsWith("@")) {
