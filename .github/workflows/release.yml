@@ -37,8 +37,8 @@ jobs:
       - name: Deploy
         run: dart run grinder pkg-github-release
         env:
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
-          GH_USER: sassbot
+          GH_TOKEN: "${{ github.token }}"
+          GH_USER: "${{ github.actor }}"
 
   deploy_github:
     name: Deploy Github
@@ -86,8 +86,8 @@ jobs:
       - name: Deploy
         run: dart run grinder update-bazel
         env:
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
-          GH_USER: sassbot
+          GH_TOKEN: "${{ github.token }}"
+          GH_USER: "${{ github.actor }}"
 
   deploy_pub:
     name: Deploy Pub
@@ -116,8 +116,8 @@ jobs:
         run: dart run grinder deploy-sass-api
         env:
           PUB_CREDENTIALS: "${{ secrets.PUB_CREDENTIALS }}"
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
-          GH_USER: sassbot
+          GH_TOKEN: "${{ github.token }}"
+          GH_USER: "${{ github.actor }}"
 
   deploy_sass_parser:
     name: Deploy sass-parser
@@ -164,8 +164,8 @@ jobs:
       - name: Deploy
         run: dart run grinder pkg-homebrew-update
         env:
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
-          GH_USER: sassbot
+          GH_TOKEN: "${{ github.token }}"
+          GH_USER: "${{ github.actor }}"
 
   deploy_chocolatey:
     name: Deploy Chocolatey
