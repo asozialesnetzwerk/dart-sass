@@ -1,3 +1,31 @@
+## 1.79.5
+
+* Changes to how `selector.unify()` and `@extend` combine selectors:
+
+    * The relative order of pseudo-classes (like `:hover`) and pseudo-elements
+      (like `::before`) within each original selector is now preserved when
+      they're combined.
+
+    * Pseudo selectors are now consistently placed at the end of the combined
+      selector, regardless of which selector they came from. Previously, this
+      reordering only applied to pseudo-selectors in the second selector.
+
+### JS API
+
+* Fix `SassColor.interpolate()` to allow an undefined `options` parameter, as
+  the types indicate.
+
+### Embedded Sass
+
+* Properly pass missing color channel values to and from custom functions.
+
+## 1.79.4
+
+### JS API
+
+* Fix a bug where passing `green` or `blue` to `color.change()` for legacy
+  colors would fail.
+
 ## 1.79.3
 
 * Update the `$channel` parameter in the suggested replacement for
