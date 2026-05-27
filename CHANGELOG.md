@@ -1,3 +1,7 @@
+## 1.100.0+asozial
+
+* Add --random-seed option
+
 ## 1.100.0
 
 * Writing two compound selectors adjacent to one another without any whitespace
